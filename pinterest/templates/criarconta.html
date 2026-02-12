@@ -1,0 +1,25 @@
+{% extends "homepage.html" %}
+{% block titulo%}
+    criar conta
+{%endblock%}
+
+{% block formulario %}    
+    <form method="POST">
+        {{ form.csrf_token }}
+        <legend>Criar Login</legend>
+        {{ form.email.label }} 
+        {{ form.email() }}<br>
+
+        {{ form.username.label }} 
+        {{ form.username() }}<br>
+
+
+        {{ form.password.label }} 
+        {{ form.password() }}<br>
+
+        {{ form.checkpassword.label }} 
+        {{ form.checkpassword() }}<br>
+
+        {{ form.botao_confirmacao() }}
+    </form>
+{% endblock %}
