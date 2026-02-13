@@ -1,5 +1,6 @@
 {% extends "homepage.html" %}
 {% block formulario %}
-    <h1>Perfil de {{ usuario }}</h1>
+    <h1>Perfil de {{ usuario.username }}</h1>
+    <img src="{{ url_for('static', filename='fotos_posts/default.jpg') }}" alt="Foto de perfil" width="150"><br>
     <a href="{{ url_for('logout') }}">Sair</a>
 {% endblock %}
