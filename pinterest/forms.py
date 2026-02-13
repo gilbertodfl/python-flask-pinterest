@@ -1,7 +1,8 @@
+from flask import Flask
 from flask_wtf import FlaskForm
 from pinterest.models import Usuario
 ## para criar os campos useremos wtforms
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import FormField, StringField, PasswordField, BooleanField, SubmitField, FileField, TextAreaField
 
 ## as validações são feitas no wtforms.validators, como por exemplo 
 # DataRequired para campos obrigatórios, Length para limitar o número de caracteres,
@@ -31,3 +32,7 @@ class FormCriarConta(FlaskForm):
         usuario = Usuario.query.filter_by(email=email.data).first()
         if usuario:
             raise ValidationError('Email já cadastrado. Utilize outro email.')
+
+class FormFoto(FlaskForm):
+    foto = FileField('Foto', validators=[DataRequired()])
+    botao_confirmacao = SubmitField('Enviar foto')

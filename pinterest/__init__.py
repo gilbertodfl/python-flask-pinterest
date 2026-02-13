@@ -15,6 +15,7 @@ import os
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] ='84741a09e5e38f33ac7410686aa03a5d'
+app.config['UPLOADER_FOLDER'] = 'static/fotos_posts'
 if os.getenv('DATABASE_URL'):
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 else:
@@ -37,7 +38,6 @@ engine = sqlalchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 inspector = sqlalchemy.inspect(engine)
 if not inspector.has_table('usuario'):
     with app.app_context():
-        db.drop_all()
         db.create_all()
         print("Tabelas criadas!")
 else:

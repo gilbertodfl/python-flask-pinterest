@@ -1,11 +1,13 @@
+from crypt import methods
 from flask import Flask, render_template, url_for, redirect, flash
 from flask_login import login_required, login_user, logout_user, current_user
 from sqlalchemy.sql.functions import user
 from wtforms import Form
 from pinterest import app, db, bcrypt
 from pinterest.models import Usuario, Foto
-from pinterest.forms import FormCriarConta, FormLogin
-
+from pinterest.forms import FormCriarConta, FormLogin, FormFoto
+import os
+from werkzeug.utils import secure_filename
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
@@ -44,17 +46,34 @@ def criarconta():
 
 
 @login_required
-@app.route('/perfil/<id_usuario>')
+@app.route('/perfil/<id_usuario>', methods=['GET', 'POST'])
 def perfil(id_usuario):
-    if int(id_usuario) == current_user.id:
-
+    try:
+        id_int = int(id_usuario)
+    except (TypeError, ValueError):
+        return redirect(url_for('homepage'))
+    if current_user.is_authenticated and current_user.id is not None and id_int == current_user.id:
+        form_foto = FormFoto()
+        if form_foto.validate_on_submit():
+            arquivo = form_foto.foto.data
+            nome_seguro = secure_filename(arquivo.filename)
+            
+            ## pegando o caminho do projeto:
+            ## os.path.abspath(os.path.dirname(__file__)
+            caminho_arquivo = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                app.config['UPLOADER_FOLDER'], nome_seguro) 
+            arquivo.save(caminho_arquivo)
+            foto = Foto(id_usuario=current_user.id, imagem=nome_seguro, descricao='descricao da foto')
+            
+            db.session.add(foto)
+            db.session.commit()
         ## usuario acesso seu perfil
-                return render_template('perfil.html', usuario=current_user)
+        return render_template('perfil.html', usuario=current_user, form=form_foto)
     else:
-        user = Usuario.query.get(id_usuario)
-        return render_template('perfil.html', usuario=user)
-
-    return render_template('perfil.html', usuario=usuario)
+        user = Usuario.query.get(id_int)
+        if user is None:
+            return redirect(url_for('homepage'))
+        return render_template('perfil.html', usuario=user, form=None)
 
 @app.route('/logout')
 @login_required

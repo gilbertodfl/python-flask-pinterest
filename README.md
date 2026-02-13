@@ -1,4 +1,10 @@
-criando o ambiente
+## PINTEREST - FAKE
+
+OBJETIVO: Simular o site pinterest. 
+
+Vamos usar flask, sqlite, bcrypt. 
+
+### criando o ambiente
 
 \# Criar ambiente virtual no linux
 
@@ -56,4 +62,6 @@ pip install flask\_bcrypt flaslogin
 
 ### formulários:
 
- _pip install flask-wtf_
+_pip install flask-wtf_
+
+_pip install email-validator_
