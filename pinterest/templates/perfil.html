@@ -1,16 +1,25 @@
 {% extends "homepage.html" %}
+
+{% block titulo %}
+    Perfil de {{ usuario.username }}
+{% endblock %}
+
 {% block formulario %}
-<h1>Perfil de {{ usuario.username }}</h1>
-{% if form %}
-<form method="POST" enctype="multipart/form-data">
-    {{ form.csrf_token }}
-    {{ form.foto.label }}
-    {{ form.foto() }}<br>
-    {{ form.botao_confirmacao() }}
-</form>
-<a href="{{ url_for('logout') }}">Sair</a>
-{% endif %}
-{% for foto in usuario.fotos %}
-    <img src="{{ url_for('static', filename='fotos_posts/{}'.format(foto.imagem) ) }}" alt="Foto de perfil" width="150"><br>
-{% endfor %}
+    {% include "navbar.html" %}
+    
+    <h1>Perfil de {{ usuario.username }}</h1>
+    
+    {% if form %}
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            {{ form.foto.label }}
+            {{ form.foto() }}<br>
+            {{ form.botao_confirmacao() }}
+        </form>
+        <a href="{{ url_for('logout') }}">Sair</a>
+    {% endif %}
+    
+    {% for foto in usuario.fotos %}
+        <img src="{{ url_for('static', filename='fotos_posts/{}'.format(foto.imagem) ) }}" alt="Foto de perfil" width="150"><br>
+    {% endfor %}
 {% endblock %}

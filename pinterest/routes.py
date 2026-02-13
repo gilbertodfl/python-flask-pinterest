@@ -81,3 +81,9 @@ def logout():
     ## aqui ele pega o current_user e "desloga"
     logout_user()
     return redirect(url_for('homepage'))
+
+@app.route('/feed')
+@login_required
+def feed():
+    fotos = Foto.query.order_by(Foto.data_criacao.desc()).all()
+    return render_template('feed.html', fotos=fotos)
