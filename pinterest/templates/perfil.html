@@ -3,9 +3,10 @@
 
 {% block body %}
     <body>
-        {% include "navbar.html" %}
-        {% if form %}
-            <div class="container">
+      {% include "navbar.html" %}
+      <div class="container">    
+      {% if form %}
+
                     <form class="bloco-add-img" method="POST" enctype="multipart/form-data">
                         {{ form.csrf_token }}
                     <h2>{{ usuario.username }}</h2>
@@ -18,20 +19,22 @@
                         </div>
                         {{ form.botao_confirmacao(class="botao-login") }}
                     </form>
-                </div>
-        {% else %}
-        <div class="bloco-add-img">
-            <h2>{{ usuario.username }} - ver perfil</h2>
-        </div    
-        {% endif %}
+
+      {% else %}
+            <div class="bloco-add-img">
+                <h2>{{ usuario.username }} - ver perfil</h2>
+            </div    
+      {% endif %}
+    
         <div class="conteudo">
           {% for foto in usuario.fotos %}
              <div class="bloco-imagem">
-                 <imgsrc="{{ url_for('static', filename='fotos_posts/{}'.format(foto.imagem) ) }}" alt="Pinterest 1" />
+                 <img src="{{ url_for('static', filename='fotos_posts/{}'.format(foto.imagem) ) }}" alt="Pinterest 1" />
              </div>
 
             {% endfor %}
         </div>
+    </div>                
         <script>
             let input = document.getElementById("foto");
             let imagemArquivo = document.getElementById("imagem-arquivo");
