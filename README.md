@@ -110,3 +110,9 @@ flask-pinterest/
 7. Imagens e CSS são referenciados com `url_for('static', filename='...')`; por isso o Flask encontra os arquivos dentro de `static/` e gera a URL correta.
 
     
+## Como colocar na nuvem
+pip freeze > requirementes
+
+Crie o arquivo `ProcFile` com o contéudo:
+
+    web: gunicorn main:app
