@@ -1,5 +1,4 @@
-##from crypt import methods
-from flask import Flask, render_template, url_for, redirect, flash
+from flask import Flask, render_template, url_for, redirect, flash, send_from_directory
 from flask_login import login_required, login_user, logout_user, current_user
 from sqlalchemy.sql.functions import user
 from wtforms import Form
@@ -44,6 +43,9 @@ def criarconta():
         return redirect( url_for('perfil', id_usuario=usuario.id))  # Redireciona para a homepage ou outra página após criar a conta
     return render_template('criarconta.html', form=form)
 
+@app.route('/upload/<path:filename>')
+def custom_static(filename):
+    return send_from_directory(app.config['UPLOADER_FOLDER'], filename, as_attachment=True)
 
 @login_required
 @app.route('/perfil/<id_usuario>', methods=['GET', 'POST'])
