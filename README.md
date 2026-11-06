@@ -111,7 +111,7 @@ flask-pinterest/
 
     
 ## Como colocar na nuvem
-pip freeze > requirements
+pip freeze > requirements.txt
 pip install gunicorn
 
 Crie o arquivo `ProcFile` com o contéudo:
