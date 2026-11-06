@@ -121,3 +121,11 @@ Crie o arquivo `ProcFile` com o contéudo:
 Use o render que ainda é de graça. 
 
 https://dashboard.render.com/
+
+O processo é o trivial:
+
+    Escolher uma aplicação do github
+    Os arquivos requirements.txt Procfile temq estar corretos
+    Criar um banco de dados
+    Criar variável de DATABASE_URL no render
+    Nosso projeto já vai ler essa variável. Veja no __init__
