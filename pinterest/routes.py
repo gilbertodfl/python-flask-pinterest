@@ -1,4 +1,4 @@
-from crypt import methods
+##from crypt import methods
 from flask import Flask, render_template, url_for, redirect, flash
 from flask_login import login_required, login_user, logout_user, current_user
 from sqlalchemy.sql.functions import user
