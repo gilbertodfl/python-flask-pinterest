@@ -4,22 +4,21 @@ OBJETIVO: Simular o site pinterest. 
 
 Permite criar uma conta, depois da conta criada é possível anexar fotos
 
-Vamos usar flask, sqlite, bcrypt. 
+## Ferramentas:
+Vamos usar python, flask, sqlite, bcrypt. 
 
-### criando o ambiente
+### Criando o ambiente
 
-\# Criar ambiente virtual no linux
-
+```bash
+# Criar ambiente virtual no linux
 python3 -m venv .venv
-
-\# Ativar o ambiente
-
+# Ativar o ambiente
 source .venv/bin/activate
-
-### instala flask
-
+```
+### Instalar flask
+```bash
 > pip install flask
-
+```
 ## Checando a instalação:
 ```plaintext
 pip freeze
@@ -32,7 +31,7 @@ Jinja2==3.1.6
 MarkupSafe==3.0.3
 Werkzeug==3.1.5
 ```
-## onde está na minha máquina? 
+## Onde está na minha máquina e como rodar? 
 cd '/home/gilberto/APRENDIZADO/HASHTAG/python impressionador/FLASK/flask-pinterest'
 
 flask  --app main --debug run
@@ -56,7 +55,7 @@ print("Database created successfully: veja em instance/database.db")
 ## Criando o database sqlite
 Rode no comando de linha:
 
-`python create_db.py`
+`python3 create_db.py`
 
 ### criando o login
 Precisamos de alguns módulos conforme abaixo
