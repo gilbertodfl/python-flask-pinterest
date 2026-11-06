@@ -111,8 +111,13 @@ flask-pinterest/
 
     
 ## Como colocar na nuvem
-pip freeze > requirementes
+pip freeze > requirements
+pip install gunicorn
 
 Crie o arquivo `ProcFile` com o contéudo:
 
     web: gunicorn main:app
+
+Use o render que ainda é de graça. 
+
+https://dashboard.render.com/
