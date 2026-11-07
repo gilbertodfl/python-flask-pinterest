@@ -23,10 +23,16 @@ app.logger.warning("=== INICIANDO CONFIGURACAO DO BANCO ===")
 app.logger.warning(f"DATABASE_URL encontrada: {bool(database_url)}")
 
 if database_url:
-    # Compatibilidade com URLs antigas do PostgreSQL
     if database_url.startswith('postgres://'):
         database_url = database_url.replace(
             'postgres://', 'postgresql://', 1
+        )
+
+    if database_url.startswith('postgresql://'):
+        database_url = database_url.replace(
+            'postgresql://',
+            'postgresql+psycopg://',
+            1
         )
 
     app.config['SQLALCHEMY_DATABASE_URI'] = database_url

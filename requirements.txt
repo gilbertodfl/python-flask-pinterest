@@ -7,4 +7,4 @@ Flask-WTF
 WTForms
 gunicorn
 email-validator
-psycopg2-binary
+psycopg[binary]
