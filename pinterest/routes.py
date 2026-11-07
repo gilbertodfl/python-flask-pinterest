@@ -27,7 +27,7 @@ def criarconta():
         usuario = Usuario()
         usuario.email = form.email.data
         usuario.username = form.username.data
-        usuario.password = bcrypt.generate_password_hash(form.password.data)
+        usuario.password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
 
         db.session.add(usuario)
         db.session.commit()
