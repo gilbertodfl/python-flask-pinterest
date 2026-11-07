@@ -29,7 +29,7 @@
         <div class="conteudo">
           {% for foto in usuario.fotos %}
              <div class="bloco-imagem">
-                 <img src="{{ url_for('custom_static', filename='fotos_posts/{}'.format(foto.imagem) ) }}" alt="Pinterest 1" />
+                 <img src="{{ url_for('custom_static', filename='{}'.format(foto.imagem) ) }}" alt="Pinterest 1" />
              </div>
 
             {% endfor %}
