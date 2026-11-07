@@ -8,4 +8,4 @@ WTForms
 gunicorn
 psycopg2
 email-validator
-
+psycopg2-binary
