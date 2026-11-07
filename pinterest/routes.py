@@ -45,6 +45,8 @@ def criarconta():
 
 @app.route('/upload/<path:filename>')
 def custom_static(filename):
+    app.logger.warning("Arquivo solicitado: {}".format(filename))
+    app.logger.warning("Caminho do diretório de upload: {}".format(app.config['UPLOADER_FOLDER']))  
     return send_from_directory(app.config['UPLOADER_FOLDER'], filename, as_attachment=True)
 
 @login_required
