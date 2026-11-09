@@ -14,7 +14,7 @@ app.config['SECRET_KEY'] = os.getenv(
     'chave-local-desenvolvimento'
 )
 
-app.config['UPLOADER_FOLDER'] = 'static/fotos_posts'
+app.config['UPLOADER_FOLDER'] = './static/fotos_posts'
 
 # Configuração do banco
 database_url = os.getenv('DATABASE_URL')
